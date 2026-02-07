@@ -4,17 +4,22 @@ metadata:
   name: demo-service
   labels:
     app: demo-service
-  annotations:
-    argocd.argoproj.io/sync-options: Replace=true
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: demo-service
+
   template:
     metadata:
       labels:
         app: demo-service
+
+      # 🔥 THIS TRIGGERS AUTO RESTART
+      annotations:
+        config-version: "1"
+
     spec:
       containers:
         - name: demo-service
@@ -22,6 +27,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+
           envFrom:
             - configMapRef:
                 name: demo-config
