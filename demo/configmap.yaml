@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: demo-config
 data:
-  APP_TIMEOUT: "12000"
+  APP_TIMEOUT: "15000"
   APP_FEATURE_ENABLED: "true"
